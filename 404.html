@@ -1,0 +1,105 @@
+Review
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Page Not Found — Legal Services Portal</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0B0F0D;
+            --bg-surface: #111814;
+            --bg-card: #141E19;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #E5C365;
+            --accent-gold-glow: rgba(212, 175, 55, 0.25);
+            --accent-emerald: #10B981;
+            --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+            --text-primary: #F5F7F2;
+            --text-secondary: #94A3B8;
+            --border-gold: 1px solid rgba(212, 175, 55, 0.25);
+            --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; width: 100%; overflow-x: hidden; background: var(--bg-dark); color: var(--text-primary); font-family: var(--font-body); }
+        .error-page-wrapper {
+            min-height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center;
+            padding: 40px 20px; position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 70%),
+                        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+        }
+                .error-code {
+            font-family: var(--font-heading); font-size: 7rem; font-weight: 800; line-height: 1;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #B89025 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px; letter-spacing: 4px; text-shadow: 0 0 30px var(--accent-gold-glow);
+        }
+        .error-title {
+            font-size: 2.2rem; margin-bottom: 16px; font-family: var(--font-heading);
+        }
+        .error-desc {
+            color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 40px; line-height: 1.6;
+        }
+        .btn-group {
+            display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px 30px; font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+            letter-spacing: 0.5px; text-decoration: none; cursor: pointer; border-radius: 0px;
+            transition: var(--transition-smooth); outline: none; border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #B89025 100%);
+            color: #0B0F0D; border: 1px solid var(--accent-gold-light);
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+        }
+         .btn-primary:hover {
+            transform: translateY(-2px); background: linear-gradient(135deg, #E5C365 0%, var(--accent-gold) 100%);
+        }
+        .btn-secondary {
+            background: rgba(17, 24, 20, 0.8); color: var(--text-primary); border: var(--border-gold);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent-gold); color: var(--accent-gold); transform: translateY(-2px);
+        }
+        .legal-motif {
+            font-size: 3rem; color: var(--accent-gold); margin-bottom: 20px; opacity: 0.8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    </head>
+<body>
+    <div class="error-page-wrapper">
+        <div class="error-card">
+            <div class="legal-motif">
+                <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <div class="error-code">404</div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-desc">The statutory document, case file, or page you requested could not be located on the portal. It may have been moved, renamed, or restricted under access control protocols.</p>
+            <div class="btn-group">
+                <!-- Go Home Button -->
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fa-solid fa-house"></i> Go Home
+                </a>
+                <!-- Go Back Button -->
+                <button class="btn btn-secondary" onclick="window.history.back()">
+                    <i class="fa-solid fa-arrow-left"></i> Go Back
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

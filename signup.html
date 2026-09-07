@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account — Legal Services Portal</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0B0F0D;
+            --bg-surface: #111814;
+            --bg-card: #141E19;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #E5C365;
+            --accent-gold-glow: rgba(212, 175, 55, 0.25);
+            --accent-emerald: #10B981;
+            --accent-emerald-dark: #047857;
+            --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+            --text-primary: #F5F7F2;
+            --text-secondary: #94A3B8;
+            --border-gold: 1px solid rgba(212, 175, 55, 0.25);
+            --border-emerald: 1px solid rgba(16, 185, 129, 0.25);
+            --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; width: 100%; overflow-x: hidden; background: var(--bg-dark); color: var(--text-primary); font-family: var(--font-body); }
+
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-primary); }
+        .gold-text { color: var(--accent-gold); }
+        .emerald-text { color: var(--accent-emerald); }
+
+        /* Split-Screen Layout */
+        .auth-split-wrapper {
+            display: flex; min-height: 100vh; width: 100%;
+        }
+
+        /* Left Side: 50% Fixed, Non-Scrollable */
+        .auth-left-panel {
+            width: 50%; height: 100vh; position: sticky; top: 0; left: 0; overflow: hidden;
+            background: linear-gradient(rgba(11, 15, 13, 0.75), rgba(11, 15, 13, 0.95)), url('assets/auth-bg.webp');
+            background-size: cover; background-position: center; border-right: var(--border-gold);
+            padding: 60px; display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        .auth-brand-area { display: flex; align-items: center; justify-content: space-between; }
+        .auth-logo { height: 42px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4)); }
+        .auth-quote-box { max-width: 500px; }
+        .auth-quote { font-size: 1.8rem; font-family: var(--font-heading); line-height: 1.35; margin-bottom: 18px; color: var(--text-primary); }
+        .auth-quote-author { color: var(--accent-gold); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .auth-badges { display: flex; gap: 24px; padding-top: 30px; border-top: var(--border-subtle); }
+        .auth-badge-item { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--text-secondary); }
+
+        /* Right Side: 50% Scrollable */
+        .auth-right-panel {
+            width: 50%; padding: 60px 80px; display: flex; flex-direction: column; justify-content: center;
+            background: var(--bg-dark); overflow-y: auto;
+        }
+
+        .auth-header-bar {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;
+        }
+
+        .btn-go-home {
+            display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary);
+            text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 8px 16px;
+            border: var(--border-subtle); background: rgba(20, 30, 25, 0.6); transition: var(--transition-smooth);
+        }
+
+        .btn-go-home:hover {
+            color: var(--accent-gold); border-color: var(--accent-gold); transform: translateX(-3px);
+        }
+
+        .auth-title { font-size: 2.2rem; margin-bottom: 8px; }
+        .auth-subtitle { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; }
+
+        /* Role Selector */
+        .role-selector {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;
+        }
+
+        .role-btn {
+            padding: 14px; background: rgba(20, 30, 25, 0.6); border: var(--border-subtle);
+            color: var(--text-secondary); font-family: var(--font-body); font-size: 0.95rem;
+            font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 10px; transition: var(--transition-smooth);
+        }
+
+        .role-btn.active {
+            background: rgba(212, 175, 55, 0.15); border-color: var(--accent-gold); color: var(--accent-gold);
+            box-shadow: 0 0 15px var(--accent-gold-glow);
+        }
+
+        .role-btn:hover { border-color: var(--accent-gold); color: var(--text-primary); }
+
+        /* Form Controls */
+        .form-group { margin-bottom: 18px; position: relative; }
+        .form-label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary); }
+        .form-input {
+            width: 100%; padding: 12px 16px; background: rgba(14, 22, 18, 0.9);
+            border: var(--border-subtle); color: var(--text-primary); font-family: var(--font-body);
+            font-size: 0.95rem; border-radius: 0px; outline: none; transition: var(--transition-smooth);
+        }
+
+        .form-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 15px var(--accent-gold-glow); }
+        .form-input.error { border-color: #EF4444 !important; background: rgba(239, 68, 68, 0.05); }
+
+        .error-msg { color: #EF4444; font-size: 0.82rem; margin-top: 4px; display: none; }
+
+        .checkbox-container {
+            display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 20px;
+        }
+
+        .checkbox-container input { accent-color: var(--accent-gold); width: 16px; height: 16px; cursor: pointer; }
+
+        .btn-auth-submit {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent-gold) 0%, #B89025 100%);
+            color: #0B0F0D; border: 1px solid var(--accent-gold-light); font-family: var(--font-body);
+            font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition-smooth);
+            margin-bottom: 20px; outline: none;
+        }
+
+        .btn-auth-submit:hover {
+            transform: translateY(-2px); background: linear-gradient(135deg, #E5C365 0%, var(--accent-gold) 100%);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .social-divider { text-align: center; position: relative; margin: 24px 0; color: var(--text-muted); font-size: 0.85rem; }
+        .social-divider::before, .social-divider::after { content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: rgba(255,255,255,0.08); }
+        .social-divider::before { left: 0; }
+        .social-divider::after { right: 0; }
+
+        .social-auth-grid { display: flex; justify-content: center; gap: 14px; margin-bottom: 24px; }
+        .social-auth-btn { width: 44px; height: 44px; background: rgba(20, 30, 25, 0.8); border: var(--border-subtle); color: var(--text-primary); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: var(--transition-smooth); }
+        .social-auth-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); transform: translateY(-3px); }
+
+        .switch-auth-text { text-align: center; color: var(--text-secondary); font-size: 0.92rem; }
+        .switch-auth-text a { color: var(--accent-gold); font-weight: 600; text-decoration: none; }
+        .switch-auth-text a:hover { text-decoration: underline; }
+
+        @media (max-width: 1024px) {
+            .auth-split-wrapper { flex-direction: column; }
+            .auth-left-panel { width: 100%; height: auto; position: relative; padding: 40px 30px; }
+            .auth-right-panel { width: 100%; padding: 40px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-split-wrapper">
+        <!-- LEFT SIDE (50% Fixed) -->
+        <div class="auth-left-panel">
+            <div class="auth-brand-area">
+                <a href="index.html">
+                    <img src="assets/logo.webp" alt="Legal Services Portal" class="auth-logo">
+                </a>
+            </div>
+
+            <div class="auth-quote-box">
+                <div class="auth-quote">"Join an institutional network of senior attorneys and corporate executives."</div>
+                <div class="auth-quote-author">— Digital Legal Infrastructure</div>
+            </div>
+
+            <div>
+                <div class="auth-badges">
+                    <div class="auth-badge-item"><i class="fa-solid fa-lock gold-text"></i> Encrypted Sign-up</div>
+                    <div class="auth-badge-item"><i class="fa-solid fa-shield-halved emerald-text"></i> Immediate Access</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE (50% Scrollable Form) -->
+        <div class="auth-right-panel">
+            <div class="auth-header-bar">
+                <a href="index.html" class="btn-go-home">
+                    <i class="fa-solid fa-arrow-left"></i> Go Home
+                </a>
+                <div class="switch-auth-text">
+                    Already registered? <a href="login.html">Log In</a>
+                </div>
+            </div>
+
+            <h1 class="auth-title">Create Account</h1>
+            <p class="auth-subtitle">Register to begin client consultations or offer statutory services.</p>
+
+            <!-- Role Selector (Client vs Lawyer) -->
+            <div class="role-selector">
+                <button type="button" class="role-btn active" id="roleClientBtn" onclick="selectRole('Client')">
+                    <i class="fa-solid fa-user"></i> Client Account
+                </button>
+                <button type="button" class="role-btn" id="roleLawyerBtn" onclick="selectRole('Lawyer')">
+                    <i class="fa-solid fa-user-tie"></i> Lawyer Profile
+                </button>
+            </div>
+
+            <form id="signupForm" novalidate>
+                <input type="hidden" id="selectedRole" value="Client">
+
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="signupName" class="form-label">Full Name * (Alphabets &amp; Spaces only)</label>
+                    <input type="text" id="signupName" class="form-input" placeholder="e.g. Eleanor Vance">
+                    <div class="error-msg" id="nameError">Full Name must contain only alphabets and spaces (no numbers or symbols).</div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="signupEmail" class="form-label">Email Address * (.com, .in, .org only)</label>
+                    <input type="email" id="signupEmail" class="form-input" placeholder="e.g. client@company.com">
+                    <div class="error-msg" id="emailError">Email must be a valid address ending in .com, .in, or .org.</div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="signupPassword" class="form-label">Password * (Min 6 characters)</label>
+                    <input type="password" id="signupPassword" class="form-input" placeholder="••••••••">
+                    <div class="error-msg" id="passwordError">Password must be at least 6 characters long.</div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••">
+                    <div class="error-msg" id="confirmError">Passwords do not match.</div>
+                </div>
+
+                <!-- Terms & Conditions Checkbox -->
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="termsCheck"> I accept the <a href="resources.html" class="gold-text" style="text-decoration: underline;" target="_blank">Terms &amp; Conditions</a> and Privacy Policy.
+                    </label>
+                    <div class="error-msg" id="termsError">You must accept the Terms &amp; Conditions to create an account.</div>
+                </div>
+
+                <button type="submit" class="btn-auth-submit">
+                    Create Account &amp; Proceed <i class="fa-solid fa-user-plus"></i>
+                </button>
+            </form>
+
+            <div class="social-divider">Or register with social network</div>
+
+            <!-- Real Social Auth Icons -->
+            <div class="social-auth-grid">
+                <a href="https://linkedin.com" target="_blank" class="social-auth-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-auth-btn" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="social-auth-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-auth-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectRole(role) {
+            document.getElementById('selectedRole').value = role;
+            const clientBtn = document.getElementById('roleClientBtn');
+            const lawyerBtn = document.getElementById('roleLawyerBtn');
+
+            if (role === 'Client') {
+                clientBtn.classList.add('active');
+                lawyerBtn.classList.remove('active');
+            } else {
+                lawyerBtn.classList.add('active');
+                clientBtn.classList.remove('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupForm = document.getElementById('signupForm');
+            const signupName = document.getElementById('signupName');
+            const signupEmail = document.getElementById('signupEmail');
+            const signupPassword = document.getElementById('signupPassword');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const termsCheck = document.getElementById('termsCheck');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmError = document.getElementById('confirmError');
+            const termsError = document.getElementById('termsError');
+
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                // 1. Full Name: Alphabets and spaces ONLY
+                const nameRegex = /^[A-Za-z\s]+$/;
+                if (!signupName.value.trim() || !nameRegex.test(signupName.value.trim())) {
+                    signupName.classList.add('error');
+                    nameError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    signupName.classList.remove('error');
+                    nameError.style.display = 'none';
+                }
+
+                // 2. Email: Must end ONLY in .com, .in, or .org
+                const emailRegex = /^[^\s@]+@[^\s@]+\.(com|in|org)$/i;
+                if (!signupEmail.value.trim() || !emailRegex.test(signupEmail.value.trim())) {
+                    signupEmail.classList.add('error');
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    signupEmail.classList.remove('error');
+                    emailError.style.display = 'none';
+                }
+
+                // 3. Password: Min 6 characters
+                if (!signupPassword.value || signupPassword.value.length < 6) {
+                    signupPassword.classList.add('error');
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    signupPassword.classList.remove('error');
+                    passwordError.style.display = 'none';
+                }
+
+                // 4. Confirm Password: Must match password
+                if (!confirmPassword.value || confirmPassword.value !== signupPassword.value) {
+                    confirmPassword.classList.add('error');
+                    confirmError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    confirmPassword.classList.remove('error');
+                    confirmError.style.display = 'none';
+                }
+
+                // 5. Terms: Must be checked
+                if (!termsCheck.checked) {
+                    termsError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    termsError.style.display = 'none';
+                }
+
+                if (isValid) {
+                    const role = document.getElementById('selectedRole').value;
+                    const fullEmail = signupEmail.value.trim();
+                    const name = signupName.value.trim();
+
+                    // Save registered user data in localStorage
+                    localStorage.setItem('registeredUser_' + fullEmail, JSON.stringify({
+                        name: name,
+                        email: fullEmail,
+                        role: role
+                    }));
+
+                    alert('Account successfully created! Redirecting to login portal...');
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

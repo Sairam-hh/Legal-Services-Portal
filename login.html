@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Legal Services Portal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,650&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+  --void:#0A0D0B;
+  --panel:#0D1310;
+  --card:rgba(20,28,24,0.55);
+  --card-solid:#121A16;
+  --glass-border:rgba(240,239,230,0.09);
+  --glass-border-hi:rgba(201,163,77,0.35);
+  --gold:#C9A34D;
+  --gold-bright:#E8C97A;
+  --gold-dim:rgba(201,163,77,0.16);
+  --emerald:#1E7A6B;
+  --emerald-bright:#3FBFA6;
+  --ink:#F2EFE6;
+  --ink-muted:#8FA39B;
+  --ink-faint:#5C6D66;
+  --danger:#E0645A;
+  --danger-glow:rgba(224,101,90,0.18);
+  --ease:cubic-bezier(0.19,1,0.22,1);
+  --ease-soft:cubic-bezier(0.4,0,0.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;width:100%;background:var(--void);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;}
+h1,h2,h3{font-family:'Fraunces',serif;color:var(--ink);font-weight:500;}
+a{color:inherit;}
+button{font-family:inherit;}
+
+::selection{background:var(--gold-dim);color:var(--gold-bright);}
+
+/* ---------- ambient background ---------- */
+#particleField{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.55;}
+
+.grid-overlay{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(242,239,230,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,239,230,0.03) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 75%);
+}
+
+.cursor-glow{
+  position:fixed;top:0;left:0;width:520px;height:520px;z-index:1;pointer-events:none;
+  background:radial-gradient(circle, rgba(201,163,77,0.07) 0%, transparent 70%);
+  transform:translate(-50%,-50%);
+  transition:opacity .4s ease;
+  opacity:0;
+}
+
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.35;pointer-events:none;}
+.blob-a{width:420px;height:420px;background:radial-gradient(circle, var(--gold) 0%, transparent 70%);top:-8%;left:-10%;animation:driftA 22s ease-in-out infinite alternate;}
+.blob-b{width:380px;height:380px;background:radial-gradient(circle, var(--emerald) 0%, transparent 70%);bottom:-12%;right:-8%;animation:driftB 26s ease-in-out infinite alternate;}
+
+@keyframes driftA{0%{transform:translate(0,0) scale(1);}100%{transform:translate(40px,60px) scale(1.12);}}
+@keyframes driftB{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-50px,-40px) scale(1.08);}}
+
+/* ---------- layout ---------- */
+.auth-wrapper{position:relative;z-index:2;display:flex;min-height:100vh;width:100%;}
+
+.brand-panel{
+  width:50%;height:100vh;position:sticky;top:0;left:0;overflow:hidden;
+  background:var(--panel);
+  border-right:1px solid var(--glass-border);
+  padding:56px 64px;display:flex;flex-direction:column;justify-content:space-between;
+}
+
+.brand-top{display:flex;align-items:center;gap:14px;position:relative;z-index:3;}
+.logo-mark{width:38px;height:38px;flex-shrink:0;}
+.brand-name{font-family:'Fraunces',serif;font-size:1.18rem;letter-spacing:0.01em;color:var(--ink);line-height:1.2;}
+.brand-name span{display:block;font-family:'Inter',sans-serif;font-size:0.68rem;color:var(--ink-muted);font-weight:500;letter-spacing:0.04em;margin-top:2px;}
+
+.brand-center{position:relative;flex:1;display:flex;align-items:center;justify-content:center;margin:20px 0;}
+.scale-visual{width:230px;height:230px;position:relative;z-index:2;filter:drop-shadow(0 0 22px rgba(201,163,77,0.18));}
+.scale-visual svg{width:100%;height:100%;}
+.scale-beam{transform-origin:115px 62px;animation:sway 6s ease-in-out infinite;}
+
+@keyframes sway{0%,100%{transform:rotate(-1.4deg);}50%{transform:rotate(1.4deg);}}
+
+.floating-card{
+  position:absolute;padding:12px 16px;border-radius:12px;
+  background:rgba(20,28,24,0.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--glass-border);
+  display:flex;align-items:center;gap:9px;font-size:0.78rem;color:var(--ink-muted);font-weight:500;
+  box-shadow:0 12px 30px rgba(0,0,0,0.35);
+  z-index:3;transition:transform .15s var(--ease-soft);
+}
+.floating-card i{color:var(--gold);font-size:0.85rem;}
+.floating-card.fc1{top:6%;right:2%;animation:float1 7s ease-in-out infinite;}
+.floating-card.fc2{bottom:14%;left:0%;animation:float2 8.5s ease-in-out infinite;}
+.floating-card.fc3{bottom:38%;right:10%;animation:float3 9.5s ease-in-out infinite;}
+
+@keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+@keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
+@keyframes float3{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+.brand-bottom{position:relative;z-index:3;}
+.brand-quote{font-family:'Fraunces',serif;font-size:1.5rem;line-height:1.4;color:var(--ink);max-width:460px;font-weight:400;}
+.brand-quote-author{margin-top:14px;color:var(--gold);font-size:0.82rem;font-weight:600;letter-spacing:0.03em;}
+.trust-row{display:flex;gap:26px;padding-top:26px;margin-top:26px;border-top:1px solid var(--glass-border);}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:0.82rem;color:var(--ink-muted);}
+.trust-item i{color:var(--emerald-bright);}
+.trust-item i.gold-i{color:var(--gold);}
+
+/* ---------- right/form panel ---------- */
+.form-panel{
+  width:50%;min-height:100vh;padding:56px 72px;display:flex;flex-direction:column;justify-content:center;
+  background:var(--void);overflow-y:auto;position:relative;z-index:2;
+}
+
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:42px;}
+.go-home{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink-muted);
+  font-size:0.85rem;font-weight:500;padding:9px 16px;border-radius:100px;border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.02);transition:all .3s var(--ease-soft);
+}
+.go-home:hover{color:var(--gold);border-color:var(--glass-border-hi);transform:translateX(-3px);}
+.secure-pill{display:flex;align-items:center;gap:7px;font-size:0.76rem;color:var(--ink-faint);font-weight:500;}
+.secure-pill i{color:var(--emerald-bright);}
+
+.auth-card{
+  max-width:420px;width:100%;
+  animation:cardIn .8s var(--ease) both;
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+.auth-heading{margin-bottom:26px;}
+.auth-heading h1{font-size:2rem;margin-bottom:8px;}
+.auth-heading p{color:var(--ink-muted);font-size:0.92rem;}
+
+/* segmented tab switcher */
+.tab-switcher{
+  position:relative;display:flex;background:rgba(255,255,255,0.03);
+  border:1px solid var(--glass-border);border-radius:14px;padding:5px;margin-bottom:20px;
+}
+.tab-indicator{
+  position:absolute;top:5px;left:5px;height:calc(100% - 10px);width:calc(50% - 5px);
+  background:linear-gradient(135deg, var(--gold) 0%, #A87F32 100%);
+  border-radius:10px;box-shadow:0 0 20px rgba(201,163,77,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+  transition:transform .5s var(--ease);
+  z-index:1;
+}
+.tab-switcher[data-tab="signup"] .tab-indicator{transform:translateX(100%);}
+.tab-btn{
+  position:relative;z-index:2;flex:1;background:none;border:none;padding:12px 0;cursor:pointer;
+  font-size:0.92rem;font-weight:600;color:var(--ink-faint);letter-spacing:0.01em;
+  transition:color .35s var(--ease-soft);
+}
+.tab-btn.active{color:var(--void);}
+.tab-btn:not(.active):hover{color:var(--ink-muted);}
+
+/* role selector */
+.role-row{display:flex;gap:8px;margin-bottom:24px;}
+.role-chip{
+  flex:1;padding:9px;border-radius:10px;background:transparent;border:1px solid var(--glass-border);
+  color:var(--ink-faint);font-size:0.8rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:7px;transition:all .3s var(--ease-soft);
+}
+.role-chip.active{border-color:var(--emerald-bright);color:var(--emerald-bright);background:rgba(63,191,166,0.08);box-shadow:0 0 14px rgba(63,191,166,0.15);}
+.role-chip:not(.active):hover{border-color:var(--glass-border-hi);color:var(--ink-muted);}
+
+/* form stage */
+.form-stage{position:relative;}
+.auth-form{
+  position:relative;
+}
+.auth-form:not(.active){display:none;}
+.auth-form.entering .field-group,
+.auth-form.entering .checkbox-row,
+.auth-form.entering .submit-btn{
+  animation:fieldIn .55s var(--ease-soft) both;
+}
+.auth-form.entering .field-group:nth-child(1){animation-delay:0.03s;}
+.auth-form.entering .field-group:nth-child(2){animation-delay:0.09s;}
+.auth-form.entering .field-group:nth-child(3){animation-delay:0.15s;}
+.auth-form.entering .field-group:nth-child(4){animation-delay:0.21s;}
+.auth-form.entering .checkbox-row{animation-delay:0.27s;}
+.auth-form.entering .submit-btn{animation-delay:0.33s;}
+
+@keyframes fieldIn{
+  from{opacity:0;transform:translateY(10px) translateX(8px);filter:blur(4px);}
+  to{opacity:1;transform:translateY(0) translateX(0);filter:blur(0);}
+}
+
+.field-group{margin-bottom:18px;position:relative;}
+.field-label{display:block;font-size:0.82rem;font-weight:600;margin-bottom:7px;color:var(--ink);}
+.field-input-wrap{position:relative;}
+.field-input{
+  width:100%;padding:13px 16px;background:rgba(255,255,255,0.025);
+  border:1px solid var(--glass-border);color:var(--ink);font-family:'Inter',sans-serif;
+  font-size:0.93rem;border-radius:10px;outline:none;transition:all .3s var(--ease-soft);
+}
+.field-input::placeholder{color:var(--ink-faint);}
+.field-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,163,77,0.12);background:rgba(255,255,255,0.045);}
+.field-input.has-toggle{padding-right:44px;}
+.field-input.invalid{border-color:var(--danger);background:var(--danger-glow);animation:shake .4s var(--ease-soft);}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-6px);}
+  40%{transform:translateX(5px);}
+  60%{transform:translateX(-3px);}
+  80%{transform:translateX(2px);}
+}
+
+.eye-toggle{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;
+  color:var(--ink-faint);cursor:pointer;font-size:0.9rem;transition:color .25s;
+}
+.eye-toggle:hover{color:var(--gold);}
+
+.field-error{color:var(--danger);font-size:0.78rem;margin-top:6px;display:none;}
+.field-error.show{display:block;}
+
+.form-options{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-size:0.84rem;}
+.checkbox-row{display:flex;align-items:center;gap:9px;color:var(--ink-muted);cursor:pointer;font-size:0.84rem;margin-bottom:22px;}
+.checkbox-row input{accent-color:var(--gold);width:16px;height:16px;cursor:pointer;flex-shrink:0;}
+.checkbox-row a{color:var(--gold);text-decoration:underline;}
+.forgot-link{color:var(--gold);text-decoration:none;transition:opacity .25s;}
+.forgot-link:hover{opacity:0.75;}
+
+/* submit button */
+.submit-btn{
+  position:relative;width:100%;padding:15px;border-radius:10px;border:1px solid var(--gold-bright);
+  background:linear-gradient(135deg, var(--gold) 0%, #A87F32 100%);
+  color:var(--void);font-size:0.96rem;font-weight:700;cursor:pointer;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:transform .25s var(--ease-soft), box-shadow .25s var(--ease-soft);
+  margin-bottom:20px;
+}
+.submit-btn::after{
+  content:'';position:absolute;top:0;left:-60%;width:50%;height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+  transform:skewX(-20deg);transition:left .7s var(--ease-soft);
+}
+.submit-btn:hover::after{left:130%;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,163,77,0.35);}
+.submit-btn:active{transform:translateY(0);}
+.submit-btn .btn-label,.submit-btn .btn-spinner,.submit-btn .btn-success{display:flex;align-items:center;gap:9px;}
+.submit-btn .btn-spinner,.submit-btn .btn-success{display:none;}
+.submit-btn.loading .btn-label{display:none;}
+.submit-btn.loading .btn-spinner{display:flex;}
+.submit-btn.success .btn-label,.submit-btn.success .btn-spinner{display:none;}
+.submit-btn.success .btn-success{display:flex;}
+.submit-btn.loading,.submit-btn.success{pointer-events:none;}
+
+.spinner{width:16px;height:16px;border:2px solid rgba(10,13,11,0.3);border-top-color:var(--void);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.check-pop{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;}
+.check-pop svg{width:100%;height:100%;stroke:var(--void);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:20;stroke-dashoffset:20;animation:drawCheck .4s .1s var(--ease-soft) forwards;}
+@keyframes drawCheck{to{stroke-dashoffset:0;}}
+
+.divider{text-align:center;position:relative;margin:22px 0;color:var(--ink-faint);font-size:0.8rem;}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--glass-border);}
+.divider::before{left:0;}
+.divider::after{right:0;}
+
+.social-row{display:flex;justify-content:center;gap:12px;}
+.social-btn{
+  width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);
+  color:var(--ink-muted);display:flex;align-items:center;justify-content:center;text-decoration:none;
+  font-size:1rem;transition:all .3s var(--ease-soft);
+}
+.social-btn:hover{border-color:var(--glass-border-hi);color:var(--gold);transform:translateY(-3px);}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
+}
+
+/* responsive */
+@media (max-width:1024px){
+  .auth-wrapper{flex-direction:column;}
+  .brand-panel{width:100%;height:auto;position:relative;padding:36px 28px;}
+  .brand-center{margin:16px 0;}
+  .scale-visual{width:150px;height:150px;}
+  .floating-card{display:none;}
+  .form-panel{width:100%;padding:36px 28px;}
+}
+@media (max-width:520px){
+  .auth-heading h1{font-size:1.6rem;}
+  .top-bar{margin-bottom:28px;}
+  .brand-quote{font-size:1.2rem;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="particleField"></canvas>
+<div class="grid-overlay"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<div class="auth-wrapper">
+
+  <!-- LEFT: BRANDING -->
+  <div class="brand-panel" id="brandPanel">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+
+    <div class="brand-top">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18.5" stroke="#C9A34D" stroke-width="1.2"/>
+        <path d="M20 9 L29 14.5 V25.5 L20 31 L11 25.5 V14.5 Z" stroke="#E8C97A" stroke-width="1.1"/>
+        <circle cx="20" cy="20" r="3" fill="#C9A34D"/>
+      </svg>
+      <div class="brand-name">Legal Services Portal<span>Institutional Client &amp; Counsel Access</span></div>
+    </div>
+
+    <div class="brand-center">
+      <div class="floating-card fc1"><i class="fa-solid fa-lock"></i> 256-bit Encryption</div>
+      <div class="floating-card fc2"><i class="fa-solid fa-user-shield"></i> Verified Counsel</div>
+      <div class="floating-card fc3"><i class="fa-solid fa-file-shield"></i> Audit-Ready Records</div>
+
+      <div class="scale-visual">
+        <svg viewBox="0 0 230 230" fill="none">
+          <line x1="115" y1="20" x2="115" y2="170" stroke="#8FA39B" stroke-width="1"/>
+          <g class="scale-beam">
+            <line x1="35" y1="62" x2="195" y2="62" stroke="#C9A34D" stroke-width="1.4"/>
+            <line x1="35" y1="62" x2="35" y2="95" stroke="#5C6D66" stroke-width="1"/>
+            <line x1="195" y1="62" x2="195" y2="95" stroke="#5C6D66" stroke-width="1"/>
+            <path d="M18 95 Q35 118 52 95" stroke="#3FBFA6" stroke-width="1.2" fill="none"/>
+            <path d="M178 95 Q195 118 212 95" stroke="#3FBFA6" stroke-width="1.2" fill="none"/>
+            <circle cx="115" cy="62" r="4" fill="#E8C97A"/>
+          </g>
+          <path d="M100 170 L130 170 L124 182 L106 182 Z" fill="#141E19" stroke="#5C6D66" stroke-width="1"/>
+          <line x1="90" y1="182" x2="140" y2="182" stroke="#5C6D66" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="brand-bottom">
+      <div class="brand-quote">"Justice is not an ideal to be reached, but a standard maintained at every decision."</div>
+      <div class="brand-quote-author">— Institutional Legal Council</div>
+      <div class="trust-row">
+        <div class="trust-item"><i class="fa-solid fa-lock gold-i"></i> 256-Bit SSL Encrypted</div>
+        <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Verified Counsel</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="form-panel">
+    <div class="top-bar">
+      <a href="index.html" class="go-home"><i class="fa-solid fa-arrow-left"></i> Go Home</a>
+      <div class="secure-pill"><i class="fa-solid fa-shield-halved"></i> Secure connection</div>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-heading">
+        <h1 id="headingText">Welcome back</h1>
+        <p id="subheadingText">Sign in to access your secure client or attorney portal.</p>
+      </div>
+
+      <div class="tab-switcher" id="tabSwitcher" data-tab="login">
+        <div class="tab-indicator"></div>
+        <button type="button" class="tab-btn active" id="loginTabBtn" data-tab="login">Login</button>
+        <button type="button" class="tab-btn" id="signupTabBtn" data-tab="signup">Sign Up</button>
+      </div>
+
+      <div class="role-row">
+        <button type="button" class="role-chip active" id="roleClientBtn" data-role="Client"><i class="fa-solid fa-user"></i> Client Access</button>
+        <button type="button" class="role-chip" id="roleLawyerBtn" data-role="Lawyer"><i class="fa-solid fa-user-tie"></i> Lawyer Access</button>
+      </div>
+
+      <div class="form-stage">
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="auth-form active entering" novalidate>
+          <div class="field-group">
+            <label class="field-label" for="loginEmail">Email address</label>
+            <div class="field-input-wrap">
+              <input type="email" id="loginEmail" class="field-input" placeholder="e.g. john.doe@gmail.com">
+            </div>
+            <div class="field-error" id="loginEmailError">Enter a valid email ending in .com, .in, or .org.</div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="loginPassword">Password</label>
+            <div class="field-input-wrap">
+              <input type="password" id="loginPassword" class="field-input has-toggle" placeholder="Minimum 6 characters">
+              <button type="button" class="eye-toggle" data-target="loginPassword"><i class="fa-solid fa-eye"></i></button>
+            </div>
+            <div class="field-error" id="loginPasswordError">Password must be at least 6 characters long.</div>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-row" style="margin-bottom:0;">
+              <input type="checkbox" id="rememberMe"> Remember this session
+            </label>
+            <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span class="btn-label">Sign In to Portal <i class="fa-solid fa-right-to-bracket"></i></span>
+            <span class="btn-spinner"><span class="spinner"></span> Verifying…</span>
+            <span class="btn-success"><span class="check-pop"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span> Success</span>
+          </button>
+        </form>
+
+        <!-- SIGNUP FORM -->
+        <form id="signupForm" class="auth-form" novalidate>
+          <div class="field-group">
+            <label class="field-label" for="signupName">Full name</label>
+            <div class="field-input-wrap">
+              <input type="text" id="signupName" class="field-input" placeholder="e.g. Eleanor Vance">
+            </div>
+            <div class="field-error" id="signupNameError">Full name must contain only letters and spaces.</div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="signupEmail">Email address</label>
+            <div class="field-input-wrap">
+              <input type="email" id="signupEmail" class="field-input" placeholder="e.g. client@company.com">
+            </div>
+            <div class="field-error" id="signupEmailError">Enter a valid email ending in .com, .in, or .org.</div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="signupPassword">Password</label>
+            <div class="field-input-wrap">
+              <input type="password" id="signupPassword" class="field-input has-toggle" placeholder="Minimum 6 characters">
+              <button type="button" class="eye-toggle" data-target="signupPassword"><i class="fa-solid fa-eye"></i></button>
+            </div>
+            <div class="field-error" id="signupPasswordError">Password must be at least 6 characters long.</div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="confirmPassword">Confirm password</label>
+            <div class="field-input-wrap">
+              <input type="password" id="confirmPassword" class="field-input has-toggle" placeholder="Re-enter your password">
+              <button type="button" class="eye-toggle" data-target="confirmPassword"><i class="fa-solid fa-eye"></i></button>
+            </div>
+            <div class="field-error" id="confirmError">Passwords do not match.</div>
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="termsCheck"> I accept the <a href="resources.html" target="_blank">Terms &amp; Conditions</a> and Privacy Policy.
+          </label>
+          <div class="field-error" id="termsError" style="margin-top:-12px;margin-bottom:16px;">You must accept the Terms &amp; Conditions to continue.</div>
+
+          <button type="submit" class="submit-btn">
+            <span class="btn-label">Create Account &amp; Proceed <i class="fa-solid fa-user-plus"></i></span>
+            <span class="btn-spinner"><span class="spinner"></span> Creating account…</span>
+            <span class="btn-success"><span class="check-pop"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></span> Account created</span>
+          </button>
+        </form>
+
+      </div>
+
+      <div class="divider">Or continue with social identity</div>
+      <div class="social-row">
+        <a href="https://linkedin.com" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://twitter.com" target="_blank" class="social-btn" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://facebook.com" target="_blank" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- particle background ---------------- */
+  var canvas = document.getElementById('particleField');
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var W, H;
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function initParticles(){
+    var count = Math.min(60, Math.floor((W*H)/28000));
+    particles = [];
+    for(var i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.15,
+        vy: (Math.random()-0.5)*0.15,
+        r: Math.random()*1.4 + 0.4
+      });
+    }
+  }
+  initParticles();
+  window.addEventListener('resize', initParticles);
+
+  function drawParticles(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<particles.length;i++){
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if(p.x < 0) p.x = W; if(p.x > W) p.x = 0;
+      if(p.y < 0) p.y = H; if(p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(201,163,77,0.35)';
+      ctx.fill();
+    }
+    for(var a=0;a<particles.length;a++){
+      for(var b=a+1;b<particles.length;b++){
+        var dx = particles[a].x-particles[b].x, dy = particles[a].y-particles[b].y;
+        var dist = Math.sqrt(dx*dx+dy*dy);
+        if(dist < 120){
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.strokeStyle = 'rgba(143,163,155,' + (0.08*(1-dist/120)) + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    if(!reduceMotion) requestAnimationFrame(drawParticles);
+  }
+  if(!reduceMotion){ requestAnimationFrame(drawParticles); } else { drawParticles(); }
+
+  /* ---------------- cursor glow + card parallax ---------------- */
+  var glow = document.getElementById('cursorGlow');
+  var brandPanel = document.getElementById('brandPanel');
+  var floatCards = document.querySelectorAll('.floating-card');
+
+  document.addEventListener('mousemove', function(e){
+    if(reduceMotion) return;
+    glow.style.opacity = '1';
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+
+    var rect = brandPanel.getBoundingClientRect();
+    if(e.clientX >= rect.left && e.clientX <= rect.right){
+      var relX = (e.clientX - rect.left - rect.width/2) / rect.width;
+      var relY = (e.clientY - rect.top - rect.height/2) / rect.height;
+      floatCards.forEach(function(card, i){
+        var depth = (i+1)*6;
+        card.style.transform = 'translate(' + (relX*depth) + 'px,' + (relY*depth) + 'px)';
+      });
+    }
+  });
+  document.addEventListener('mouseleave', function(){ glow.style.opacity = '0'; });
+
+  /* ---------------- tab switching ---------------- */
+  var tabSwitcher = document.getElementById('tabSwitcher');
+  var loginTabBtn = document.getElementById('loginTabBtn');
+  var signupTabBtn = document.getElementById('signupTabBtn');
+  var loginForm = document.getElementById('loginForm');
+  var signupForm = document.getElementById('signupForm');
+  var headingText = document.getElementById('headingText');
+  var subheadingText = document.getElementById('subheadingText');
+
+  var copy = {
+    login: {h:'Welcome back', s:'Sign in to access your secure client or attorney portal.'},
+    signup: {h:'Create your account', s:'Register to begin client consultations or offer statutory services.'}
+  };
+
+  function setTab(tab){
+    tabSwitcher.setAttribute('data-tab', tab);
+    loginTabBtn.classList.toggle('active', tab === 'login');
+    signupTabBtn.classList.toggle('active', tab === 'signup');
+    headingText.textContent = copy[tab].h;
+    subheadingText.textContent = copy[tab].s;
+
+    var showForm = tab === 'login' ? loginForm : signupForm;
+    var hideForm = tab === 'login' ? signupForm : loginForm;
+
+    hideForm.classList.remove('active','entering');
+    showForm.classList.add('active');
+    void showForm.offsetWidth; /* restart animation */
+    showForm.classList.add('entering');
+  }
+
+  loginTabBtn.addEventListener('click', function(){ setTab('login'); });
+  signupTabBtn.addEventListener('click', function(){ setTab('signup'); });
+
+  /* ---------------- role selector ---------------- */
+  var roleClientBtn = document.getElementById('roleClientBtn');
+  var roleLawyerBtn = document.getElementById('roleLawyerBtn');
+  var selectedRole = 'Client';
+
+  function setRole(role){
+    selectedRole = role;
+    roleClientBtn.classList.toggle('active', role === 'Client');
+    roleLawyerBtn.classList.toggle('active', role === 'Lawyer');
+  }
+  roleClientBtn.addEventListener('click', function(){ setRole('Client'); });
+  roleLawyerBtn.addEventListener('click', function(){ setRole('Lawyer'); });
+
+  /* ---------------- password visibility ---------------- */
+  document.querySelectorAll('.eye-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var input = document.getElementById(btn.getAttribute('data-target'));
+      var icon = btn.querySelector('i');
+      if(input.type === 'password'){
+        input.type = 'text';
+        icon.classList.remove('fa-eye'); icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash'); icon.classList.add('fa-eye');
+      }
+    });
+  });
+
+  document.getElementById('forgotLink').addEventListener('click', function(e){
+    e.preventDefault();
+    alert('If an account exists for this email, a password reset link has been sent.');
+  });
+
+  /* ---------------- validation helpers ---------------- */
+  function showError(input, errorEl, show){
+    if(show){
+      input.classList.remove('invalid');
+      void input.offsetWidth;
+      input.classList.add('invalid');
+      errorEl.classList.add('show');
+    } else {
+      input.classList.remove('invalid');
+      errorEl.classList.remove('show');
+    }
+  }
+
+  var emailRegex = /^[^\s@]+@[^\s@]+\.(com|in|org)$/i;
+  var nameRegex = /^[A-Za-z\s]+$/;
+
+  function runSubmit(btn, form, onValidate, onSuccess){
+    btn.classList.add('loading');
+    setTimeout(function(){
+      btn.classList.remove('loading');
+      btn.classList.add('success');
+      setTimeout(onSuccess, 900);
+    }, 1100);
+  }
+
+  /* ---------------- login submit ---------------- */
+  loginForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('loginEmail');
+    var password = document.getElementById('loginPassword');
+    var emailErr = document.getElementById('loginEmailError');
+    var passErr = document.getElementById('loginPasswordError');
+    var valid = true;
+
+    if(!email.value.trim() || !emailRegex.test(email.value.trim())){
+      showError(email, emailErr, true); valid = false;
+    } else showError(email, emailErr, false);
+
+    if(!password.value || password.value.length < 6){
+      showError(password, passErr, true); valid = false;
+    } else showError(password, passErr, false);
+
+    if(!valid) return;
+
+    var btn = loginForm.querySelector('.submit-btn');
+    runSubmit(btn, loginForm, null, function(){
+      var fullEmail = email.value.trim();
+      var rawName = fullEmail.split('@')[0];
+      var formattedName = rawName.replace(/[._]/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+
+      localStorage.setItem('isLoggedIn','true');
+      localStorage.setItem('userEmail', fullEmail);
+      localStorage.setItem('userRole', selectedRole);
+      localStorage.setItem('userName', formattedName);
+
+      window.location.href = selectedRole === 'Lawyer' ? 'lawyer-dashboard.html' : 'client-dashboard.html';
+    });
+  });
+
+  /* ---------------- signup submit ---------------- */
+  signupForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('signupName');
+    var email = document.getElementById('signupEmail');
+    var password = document.getElementById('signupPassword');
+    var confirm = document.getElementById('confirmPassword');
+    var terms = document.getElementById('termsCheck');
+
+    var nameErr = document.getElementById('signupNameError');
+    var emailErr = document.getElementById('signupEmailError');
+    var passErr = document.getElementById('signupPasswordError');
+    var confirmErr = document.getElementById('confirmError');
+    var termsErr = document.getElementById('termsError');
+
+    var valid = true;
+
+    if(!name.value.trim() || !nameRegex.test(name.value.trim())){
+      showError(name, nameErr, true); valid = false;
+    } else showError(name, nameErr, false);
+
+    if(!email.value.trim() || !emailRegex.test(email.value.trim())){
+      showError(email, emailErr, true); valid = false;
+    } else showError(email, emailErr, false);
+
+    if(!password.value || password.value.length < 6){
+      showError(password, passErr, true); valid = false;
+    } else showError(password, passErr, false);
+
+    if(!confirm.value || confirm.value !== password.value){
+      showError(confirm, confirmErr, true); valid = false;
+    } else showError(confirm, confirmErr, false);
+
+    if(!terms.checked){
+      termsErr.classList.add('show'); valid = false;
+    } else termsErr.classList.remove('show');
+
+    if(!valid) return;
+
+    var btn = signupForm.querySelector('.submit-btn');
+    runSubmit(btn, signupForm, null, function(){
+      var fullEmail = email.value.trim();
+      localStorage.setItem('registeredUser_' + fullEmail, JSON.stringify({
+        name: name.value.trim(),
+        email: fullEmail,
+        role: selectedRole
+      }));
+      setTab('login');
+      btn.classList.remove('success');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

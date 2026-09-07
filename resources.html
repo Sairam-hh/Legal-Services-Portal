@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Resources & Intelligence Hub</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0B0F0D;
+            --bg-surface: #111814;
+            --bg-card: #141E19;
+            --bg-card-hover: #1A2821;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #E5C365;
+            --accent-gold-glow: rgba(212, 175, 55, 0.25);
+            --accent-emerald: #10B981;
+            --accent-emerald-dark: #047857;
+            --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+            --text-primary: #F5F7F2;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --border-gold: 1px solid rgba(212, 175, 55, 0.25);
+            --border-emerald: 1px solid rgba(16, 185, 129, 0.25);
+            --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg-dark); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--text-primary); letter-spacing: 0.5px; }
+        .gold-text { color: var(--accent-gold); }
+        .emerald-text { color: var(--accent-emerald); }
+
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .section-padding { padding: 100px 0; }
+        .text-center { text-align: center; }
+
+        .section-header { max-width: 750px; margin: 0 auto 60px auto; text-align: center; }
+        .section-subtitle { text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; color: var(--accent-gold); margin-bottom: 12px; display: inline-block; }
+        .section-title { font-size: 2.5rem; margin-bottom: 18px; line-height: 1.25; }
+        .section-desc { color: var(--text-secondary); font-size: 1.05rem; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px 28px; font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+            letter-spacing: 0.5px; text-decoration: none; cursor: pointer; border-radius: 0px;
+            transition: var(--transition-smooth); outline: none;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-gold) 0%, #B89025 100%); color: #0B0F0D; border: 1px solid var(--accent-gold-light); }
+        .btn-primary:hover { transform: translateY(-2px); background: linear-gradient(135deg, #E5C365 0%, var(--accent-gold) 100%); }
+        .btn-secondary { background: rgba(17, 24, 20, 0.8); color: var(--text-primary); border: var(--border-gold); backdrop-filter: blur(10px); }
+
+        .square-card {
+            background: rgba(20, 30, 25, 0.7); border: var(--border-subtle); border-radius: 0px;
+            padding: 32px; backdrop-filter: blur(12px); transition: var(--transition-smooth);
+        }
+        .square-card:hover { border: var(--border-gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--accent-gold-glow); }
+
+        /* Header */
+        .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(11, 15, 13, 0.9); backdrop-filter: blur(16px); border-bottom: var(--border-subtle); }
+        .header-container { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+        .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img { height: 38px; width: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3)); }
+        .nav-menu { display: flex; align-items: center; gap: 36px; list-style: none; }
+        .nav-link { color: var(--text-primary); text-decoration: none; font-size: 0.92rem; font-weight: 500; letter-spacing: 0.5px; transition: var(--transition-smooth); position: relative; padding: 6px 0; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px; background: var(--accent-gold); transition: var(--transition-smooth); }
+        .nav-link:hover, .nav-link.active { color: var(--accent-gold); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        .mobile-toggle { display: none; background: transparent; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; padding: 8px; }
+        .mobile-drawer { position: fixed; top: 0; right: -100%; width: 100%; max-width: 380px; height: 100vh; background: rgba(14, 22, 18, 0.98); backdrop-filter: blur(20px); border-left: var(--border-gold); padding: 40px 30px; display: flex; flex-direction: column; justify-content: space-between; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; }
+        .mobile-drawer.open { right: 0; }
+        .drawer-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 24px; border-bottom: var(--border-subtle); }
+        .mobile-menu-links { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+        .mobile-nav-link { color: var(--text-primary); text-decoration: none; font-size: 1.1rem; font-family: var(--font-heading); display: flex; align-items: center; gap: 14px; padding: 10px 0; }
+        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); opacity: 0; visibility: hidden; transition: var(--transition-smooth); z-index: 999; }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+
+        /* Page Hero */
+        .page-hero {
+            padding-top: 170px; padding-bottom: 80px;
+            background: linear-gradient(rgba(11, 15, 13, 0.85), rgba(11, 15, 13, 0.95)), url('assets/hero.webp');
+            background-size: cover; background-position: center; border-bottom: var(--border-subtle);
+            text-align: center;
+        }
+
+        /* Search & Filter Bar */
+        .filter-section {
+            margin-top: 30px; display: flex; flex-direction: column; gap: 24px; align-items: center;
+        }
+
+        .search-box {
+            position: relative; max-width: 560px; width: 100%;
+        }
+
+        .search-input {
+            width: 100%; padding: 16px 20px 16px 50px; background: rgba(20, 30, 25, 0.9);
+            border: var(--border-gold); color: var(--text-primary); font-size: 1rem;
+            border-radius: 0px; outline: none; transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 20px var(--accent-gold-glow); border-color: var(--accent-gold-light);
+        }
+
+        .search-icon {
+            position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+            color: var(--accent-gold); font-size: 1.1rem;
+        }
+
+        .filter-buttons {
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+        }
+
+        .filter-btn {
+            background: rgba(20, 30, 25, 0.7); border: var(--border-subtle); color: var(--text-secondary);
+            padding: 10px 20px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-gold); color: #0B0F0D; border-color: var(--accent-gold);
+        }
+
+        /* Resource Grid */
+        .resources-hub-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        }
+
+        .resource-hub-card {
+            display: flex; flex-direction: column; overflow: hidden; padding: 0;
+        }
+
+        .resource-hub-img-box {
+            height: 220px; overflow: hidden; position: relative;
+        }
+
+        .resource-hub-img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+        }
+
+        .resource-hub-card:hover .resource-hub-img {
+            transform: scale(1.08);
+        }
+
+        .resource-hub-content {
+            padding: 24px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1;
+        }
+
+        .resource-category-badge {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px; display: inline-block;
+        }
+
+        /* FAQ Accordion */
+        .faq-accordion {
+            max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;
+        }
+
+        .faq-item {
+            background: rgba(20, 30, 25, 0.7); border: var(--border-subtle); transition: var(--transition-smooth);
+        }
+
+        .faq-question {
+            padding: 20px 24px; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-primary);
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px 24px; color: var(--text-secondary); font-size: 0.95rem; display: none; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px;
+        }
+
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open { border-color: var(--accent-gold); }
+
+        /* Modal Reader */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+            display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition-smooth);
+        }
+        .modal.open { opacity: 1; visibility: visible; }
+        .modal-body { background: var(--bg-card); border: var(--border-gold); max-width: 700px; width: 90%; padding: 40px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+
+        /* Footer */
+        .site-footer { background: #070A08; border-top: var(--border-subtle); padding: 80px 0 30px 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; margin-bottom: 60px; }
+        .footer-brand-logo { height: 36px; margin-bottom: 20px; }
+        .footer-brand-desc { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 24px; max-width: 320px; }
+        .social-links { display: flex; align-items: center; gap: 12px; }
+        .social-icon { width: 40px; height: 40px; background: rgba(20, 30, 25, 0.8); border: var(--border-subtle); color: var(--text-primary); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: var(--transition-smooth); }
+        .social-icon:hover { border-color: var(--accent-gold); color: var(--accent-gold); transform: translateY(-3px); }
+        .footer-col-title { font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 24px; position: relative; padding-bottom: 8px; }
+        .footer-col-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 30px; height: 2px; background: var(--accent-gold); }
+        .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; transition: var(--transition-smooth); display: inline-block; }
+        .footer-link:hover { color: var(--accent-gold); transform: translateX(5px); }
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 14px; }
+        .footer-contact-item i { color: var(--accent-gold); margin-top: 4px; }
+        .footer-bottom { padding-top: 30px; border-top: var(--border-subtle); display: flex; align-items: center; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+            .resources-hub-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu, .header-action { display: none; }
+            .mobile-toggle { display: block; }
+            .resources-hub-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link"><img src="assests/logo.webp" alt="Legal Services Portal" class="logo-img"></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Legal Services</a></li>
+                <li><a href="resources.html" class="nav-link active">Resources</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="header-action">
+                <a href="login.html" class="btn btn-primary"><i class="fa-solid fa-lock"></i> Login</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggleBtn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="mobile-drawer" id="mobileDrawer">
+        <div>
+            <div class="drawer-header">
+                <a href="index.html" class="logo-link"><img src="assests/logo.webp" alt="Legal Services Portal" class="logo-img"></a>
+                <button class="mobile-toggle" id="drawerCloseBtn" style="display:block;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <ul class="mobile-menu-links">
+                <li><a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="about.html" class="mobile-nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+                <li><a href="services.html" class="mobile-nav-link"><i class="fa-solid fa-scale-balanced"></i> Legal Services</a></li>
+                <li><a href="resources.html" class="mobile-nav-link"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+                <li><a href="contact.html" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+        <div style="margin-top: auto; padding-top: 30px;">
+            <a href="login.html" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-lock"></i> Login</a>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container reveal">
+            <span class="section-subtitle">Legal Intelligence Hub</span>
+            <h1 style="font-size: 3rem; margin-bottom: 16px;">Legal Guides &amp; <span class="gold-text">Statutory Insights</span></h1>
+            <p style="max-width: 750px; margin: 0 auto; color: var(--text-secondary); font-size: 1.1rem;">Search statutory guides, corporate templates, compliance checklists, and legal FAQs.</p>
+
+            <div class="filter-section">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search guides, categories, or statutory keywords...">
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All Resources</button>
+                    <button class="filter-btn" data-category="corporate">Corporate</button>
+                    <button class="filter-btn" data-category="property">Property</button>
+                    <button class="filter-btn" data-category="employment">Employment</button>
+                    <button class="filter-btn" data-category="criminal">Criminal</button>
+                    <button class="filter-btn" data-category="family">Family</button>
+                    <button class="filter-btn" data-category="general">General</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Cards Hub Grid -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="resources-hub-grid" id="resourcesGrid">
+
+                <!-- Resource 1 -->
+                <div class="square-card resource-hub-card resource-item reveal" data-category="corporate">
+                    <div class="resource-hub-img-box">
+                        <img src="./assests/resource1.webp" alt="Corporate Governance" class="resource-hub-img">
+                    </div>
+                    <div class="resource-hub-content">
+                        <div>
+                            <span class="resource-category-badge">Corporate Law</span>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Corporate Governance &amp; Compliance Manual 2026</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Comprehensive breakdown of statutory board responsibilities, SEC reporting timelines, and venture shareholder voting rights.</p>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Corporate Governance & Compliance Manual 2026', 'Corporate Law', 'Detailed breakdown of corporate governance rules including annual general meetings (AGMs), shareholder rights, SEC Form 10-K filing protocols, and fiduciary duties of enterprise directors.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Resource 2 -->
+                <div class="square-card resource-hub-card resource-item reveal" data-category="property">
+                    <div class="resource-hub-img-box">
+                        <img src="./assests/resource2.webp" alt="Property Title Diligence" class="resource-hub-img">
+                    </div>
+                    <div class="resource-hub-content">
+                        <div>
+                            <span class="resource-category-badge">Property Law</span>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Commercial Real Estate Title Due Diligence</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Essential verification steps before signing real estate acquisition contracts or long-term commercial master leases.</p>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Commercial Real Estate Title Due Diligence', 'Property Law', 'This guide outlines step-by-step title deed inspection, encumbrance searches, zoning clearance verification, and environmental liability audits.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Resource 3 -->
+                <div class="square-card resource-hub-card resource-item reveal" data-category="corporate">
+                    <div class="resource-hub-img-box">
+                        <img src="./assests/resource3.webp" alt="IP Protection" class="resource-hub-img">
+                    </div>
+                    <div class="resource-hub-content">
+                        <div>
+                            <span class="resource-category-badge">Corporate</span>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Protecting Software Assets &amp; AI Innovations</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">How technology companies can combine trade secrets, software patents, and copyright licensing for maximum protection.</p>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Protecting Software Assets & AI Innovations', 'Corporate', 'Navigating software patent eligibility under USPTO guidelines, structuring trade secret vaults, and preventing proprietary code leaks in LLM integrations.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Resource 4 -->
+                <div class="square-card resource-hub-card resource-item reveal" data-category="family">
+                    <div class="resource-hub-img-box">
+                        <img src="./assests/resource4.webp" alt="Estate Planning" class="resource-hub-img">
+                    </div>
+                    <div class="resource-hub-content">
+                        <div>
+                            <span class="resource-category-badge">Family Law</span>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Essential Elements of Estate Trust Structuring</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">A practical roadmap for setting up revocable living trusts, irrevocable asset protection trusts, and healthcare POAs.</p>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Essential Elements of Estate Trust Structuring', 'Family Law', 'Comprehensive guide detailing how trusts bypass probate courts, reduce estate tax liability, and secure multi-generational wealth transfer.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Resource 5 -->
+                <div class="square-card resource-hub-card resource-item reveal" data-category="employment">
+                    <div class="resource-hub-img-box">
+                        <img src="./assests/resource1.webp" alt="Employment Rights" class="resource-hub-img">
+                    </div>
+                    <div class="resource-hub-content">
+                        <div>
+                            <span class="resource-category-badge">Employment</span>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Executive Severance &amp; Non-Compete Enforceability</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Analyzing recent FTC and state court rulings regarding non-compete clauses and executive equity acceleration.</p>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Executive Severance & Non-Compete Enforceability', 'Employment', 'Explores geographic and temporal limits of non-competes, trade secret carveouts, and negotiating change-of-control severance triggers.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Resource 6 -->
+                <div class="square-card resource-hub-card resource-item reveal" data-category="criminal">
+                    <div class="resource-hub-img-box">
+                        <img src="./assests/security.webp" alt="White Collar Defense" class="resource-hub-img">
+                    </div>
+                    <div class="resource-hub-content">
+                        <div>
+                            <span class="resource-category-badge">Criminal Law</span>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Corporate Investigation Protocol &amp; Statutory Privilege</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">What enterprise leaders must do immediately when served with agency subpoenas or regulatory audit notices.</p>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Corporate Investigation Protocol & Statutory Privilege', 'Criminal Law', 'Outlines Upjohn warnings, securing attorney-client privilege during internal investigations, and data retention holds.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="section-padding" style="background: var(--bg-surface); border-top: var(--border-subtle); border-bottom: var(--border-subtle);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-subtitle">Common Inquiries</span>
+                <h2 class="section-title">Frequently Asked Legal Questions</h2>
+                <p class="section-desc">Clear answers regarding platform consultations, fee structures, and security guarantees.</p>
+            </div>
+
+            <div class="faq-accordion reveal">
+                <div class="faq-item">
+                    <div class="faq-question">How are legal professionals on the portal verified? <i class="fa-solid fa-chevron-down gold-text"></i></div>
+                    <div class="faq-answer">Every attorney onboarded to Legal Services Portal undergoes active state bar standing verification, 10+ years minimum experience review, professional liability insurance audit, and criminal background evaluation.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is communication on the portal protected by Attorney-Client Privilege? <i class="fa-solid fa-chevron-down gold-text"></i></div>
+                    <div class="faq-answer">Yes. All portal messages, document uploads, and consultation video notes are protected under statutory attorney-client confidentiality rules and stored in an ISO 27001-encrypted vault.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What are the consultation fees? <i class="fa-solid fa-chevron-down gold-text"></i></div>
+                    <div class="faq-answer">Initial strategic consultations are offered at transparent fixed rates disclosed prior to booking. Long-term retainers or project-based legal reviews are agreed upon directly with your assigned lead counsel without hidden surcharges.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I access digital contract templates? <i class="fa-solid fa-chevron-down gold-text"></i></div>
+                    <div class="faq-answer">Yes, registered clients and corporate entities have direct access to our verified template vault containing standard NDAs, Employment Agreements, Commercial Leases, and POAs.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Reader Modal -->
+    <div class="modal" id="resourceModal">
+        <div class="modal-body">
+            <button class="modal-close" onclick="closeResourceModal()">&times;</button>
+            <span id="modalResCategory" class="gold-text" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">CATEGORY</span>
+            <h2 id="modalResTitle" style="margin: 8px 0 16px 0; font-size: 1.8rem;">Guide Title</h2>
+            <p id="modalResContent" style="color: var(--text-secondary); line-height: 1.8; font-size: 1rem; margin-bottom: 30px;">Guide text content here...</p>
+            <div style="display: flex; gap: 14px;">
+                <a href="contact.html" class="btn btn-primary" style="flex: 1;">Consult an Attorney on This Topic</a>
+                <button class="btn btn-secondary" onclick="closeResourceModal()">Close Reader</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="./assests/logo.webp" alt="Legal Services Portal" class="footer-brand-logo">
+                    <p class="footer-brand-desc">A premium legal technology portal offering direct access to vetted attorneys, secure document vaults, and institutional legal consultation.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Quick Links</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="services.html" class="footer-link">Legal Services</a></li>
+                        <li><a href="resources.html" class="footer-link">Resources</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Legal Resources</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="resources.html" class="footer-link">Legal Guides</a></li>
+                        <li><a href="resources.html" class="footer-link">FAQs</a></li>
+                        <li><a href="resources.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="resources.html" class="footer-link">Terms & Conditions</a></li>
+                        <li><a href="resources.html" class="footer-link">Legal Updates</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Contact Info</h4>
+                    <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+1 (800) 555-LEGAL<br>+1 (212) 990-8800</span></div>
+                    <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>contact@legalservicesportal.com</span></div>
+                    <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>100 Wall Street, Suite 2400<br>New York, NY 10005</span></div>
+                    <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon - Fri: 8:00 AM - 8:00 PM EST</span></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Legal Services Portal. All Rights Reserved.</div>
+                <div>Designed with Precision &amp; Bank-Grade Security</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+            const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+            const mobileDrawer = document.getElementById('mobileDrawer');
+            const drawerOverlay = document.getElementById('drawerOverlay');
+
+            function openDrawer() { mobileDrawer.classList.add('open'); drawerOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closeDrawer() { mobileDrawer.classList.remove('open'); drawerOverlay.classList.remove('open'); document.body.style.overflow = 'auto'; }
+
+            if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', openDrawer);
+            if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
+            if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            function checkReveal() {
+                revealElements.forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
+                });
+            }
+            window.addEventListener('scroll', checkReveal);
+            checkReveal();
+
+            // FAQ Accordion Toggle
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    faqItems.forEach(i => { if (i !== item) i.classList.remove('open'); });
+                    item.classList.toggle('open');
+                });
+            });
+
+            // Dynamic Category Filter & Live Search
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('searchInput');
+            const resourceItems = document.querySelectorAll('.resource-item');
+
+            let activeCategory = 'all';
+
+            function filterResources() {
+                const query = searchInput.value.toLowerCase().trim();
+
+                resourceItems.forEach(item => {
+                    const itemCat = item.getAttribute('data-category');
+                    const itemText = item.innerText.toLowerCase();
+
+                    const matchesCategory = (activeCategory === 'all' || itemCat === activeCategory);
+                    const matchesSearch = (query === '' || itemText.includes(query));
+
+                    if (matchesCategory && matchesSearch) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeCategory = btn.getAttribute('data-category');
+                    filterResources();
+                });
+            });
+
+            if (searchInput) searchInput.addEventListener('input', filterResources);
+        });
+
+        function openResourceReader(title, category, content) {
+            document.getElementById('modalResTitle').innerText = title;
+            document.getElementById('modalResCategory').innerText = category;
+            document.getElementById('modalResContent').innerText = content;
+            document.getElementById('resourceModal').classList.add('open');
+        }
+
+        function closeResourceModal() {
+            document.getElementById('resourceModal').classList.remove('open');
+        }
+    </script>
+</body>
+</html>
