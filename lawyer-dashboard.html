@@ -181,7 +181,7 @@
             </div>
 
             <div>
-                <button class="logout-btn" onclick="handleLogout()">
+                <button class="logout-btn" onclick="window.location.href = 'login.html';">
                     <i class="fa-solid fa-right-from-bracket"></i> Log Out
                 </button>
             </div>
@@ -198,7 +198,7 @@
                         <p style="color: var(--text-secondary); font-size: 0.88rem;">Caseload Management &amp; Client Consultation Oversight</p>
                     </div>
                 </div>
-                <a href="index.html" style="color: var(--accent-emerald); text-decoration: none; font-weight: 600; font-size: 0.9rem;"><i class="fa-solid fa-house"></i> View Main Site</a>
+                <a href="lawyer-error.html" style="color: var(--accent-emerald); text-decoration: none; font-weight: 600; font-size: 0.9rem;"><i class="fa-solid fa-house"></i> View Main Site</a>
             </div>
 
             <!-- Stats Widgets -->
@@ -295,8 +295,8 @@
                                 <td>Corporate Equity Grant</td>
                                 <td>Sep 06, 2026</td>
                                 <td>
-                                    <button style="padding: 6px 12px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer; margin-right: 6px;" onclick="alert('Accepted client request #LSP-REQ-101. Added to active calendar.')">Accept</button>
-                                    <button style="padding: 6px 12px; background: rgba(20,30,25,0.8); border: var(--border-subtle); color: var(--text-secondary); cursor: pointer;" onclick="alert('Request marked under review.')">Review Notes</button>
+                                    <a href="lawyer-error.html" style="padding: 6px 12px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer; margin-right: 6px;" >Accept</a>
+                                    <a href="lawyer-error.html" style="padding: 6px 12px; background: rgba(20,30,25,0.8); border: var(--border-subtle); color: var(--text-secondary); cursor: pointer;" >Review Notes</a>
                                 </td>
                             </tr>
                             <tr>
@@ -304,8 +304,8 @@
                                 <td>Commercial Lease Dispute</td>
                                 <td>Sep 05, 2026</td>
                                 <td>
-                                    <button style="padding: 6px 12px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer; margin-right: 6px;" onclick="alert('Accepted client request #LSP-REQ-102.')">Accept</button>
-                                    <button style="padding: 6px 12px; background: rgba(20,30,25,0.8); border: var(--border-subtle); color: var(--text-secondary); cursor: pointer;" onclick="alert('Request marked under review.')">Review Notes</button>
+                                    <a href="lawyer-error.html" style="padding: 6px 12px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer; margin-right: 6px;" >Accept</a>
+                                    <a href="lawyer-error.html" style="padding: 6px 12px; background: rgba(20,30,25,0.8); border: var(--border-subtle); color: var(--text-secondary); cursor: pointer;" >Review Notes</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -324,7 +324,7 @@
                             <p style="color: var(--text-secondary); font-size: 0.9rem;">Federal District Court Hearing: NextGen Robotics vs. Global IP Corp (#IP-2026-4022)</p>
                         </div>
                     </div>
-                    <button style="padding: 10px 20px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="alert('Hearing brief generated for court presentation.')">Prepare Hearing Brief</button>
+                    <button style="padding: 10px 20px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="window.location.href = 'lawyer-error.html';">Prepare Hearing Brief</button>
                 </div>
             </div>
 
@@ -366,7 +366,7 @@
                     <p style="color: var(--text-secondary); margin-bottom: 20px;">Upload legally binding motions, affidavits, or draft contracts to client vault:</p>
                     <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 24px;">
                         <input type="file" id="lawyerFileInput" style="background: rgba(14,22,18,0.9); padding: 10px; border: var(--border-subtle); color: var(--text-primary);">
-                        <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="alert('Document encrypted and uploaded to client vault!')">Upload to Vault</button>
+                        <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="window.location.href = 'lawyer-error.html';">Upload to Vault</button>
                     </div>
                 </div>
             </div>
@@ -384,7 +384,7 @@
                     </div>
                     <div style="display: flex; gap: 12px; margin-top: 30px;">
                         <input type="text" class="dash-input" placeholder="Type attorney response..." id="lawyerMsgInput">
-                        <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer; white-space: nowrap;" onclick="alert('Response sent to client.')">Send Client Response</button>
+                        <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer; white-space: nowrap;" onclick="window.location.href = 'lawyer-error.html';">Send Client Response</button>
                     </div>
                 </div>
             </div>
@@ -405,7 +405,7 @@
                         <label style="color: var(--text-secondary); font-size: 0.88rem;">Primary Practice Specialization</label>
                         <input type="text" class="dash-input" value="Corporate Law &amp; Intellectual Property">
                     </div>
-                    <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="alert('Attorney profile updated!')">Save Credential Updates</button>
+                    <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="window.location.href = 'lawyer-error.html';">Save Credential Updates</button>
                 </div>
             </div>
 
@@ -423,7 +423,7 @@
                             <input type="checkbox" checked style="accent-color: var(--accent-emerald);"> Auto-Sync Court Docket Dates with iCal
                         </label>
                     </div>
-                    <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="alert('Practice settings saved!')">Save Practice Preferences</button>
+                    <button style="padding: 12px 24px; background: var(--accent-emerald); color: #FFFFFF; border: none; font-weight: 700; cursor: pointer;" onclick="window.location.href = 'lawyer-error.html';">Save Practice Preferences</button>
                 </div>
             </div>
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,7 +81,7 @@
         }
 
         .section-padding {
-            padding: 100px 0;
+            padding: 50px 0;
         }
 
         .text-center { text-align: center; }
@@ -971,7 +970,7 @@
         .final-cta-section {
             position: relative;
             padding: 120px 0;
-            background: linear-gradient(rgba(11, 15, 13, 0.85), rgba(11, 15, 13, 0.95)), url('assets/cta-bg.webp');
+            background: linear-gradient(rgba(11, 15, 13, 0.85), rgba(11, 15, 13, 0.95)), url('assests/cta-bg.webp');
             background-size: cover;
             background-position: center;
             border-top: var(--border-gold);
@@ -1204,6 +1203,71 @@
             .hero-img, .platform-img, .why-img, .security-img { height: 350px; }
             .cta-buttons { flex-direction: column; }
         }
+
+        /* Footer Contact Info — hover effect */
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+    padding: 8px 10px;
+    margin-left: -10px;
+    border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.footer-contact-item i {
+    color: var(--accent-gold);
+    margin-top: 4px;
+    transition: var(--transition-smooth);
+}
+
+.footer-contact-item:hover {
+    background: rgba(212, 175, 55, 0.06);
+    border-left: 2px solid var(--accent-gold);
+    transform: translateX(6px);
+    color: var(--accent-gold);
+}
+
+.footer-contact-item:hover i {
+    color: var(--accent-gold-light);
+    transform: scale(1.15);
+    text-shadow: 0 0 10px var(--accent-gold-glow);
+}
+
+/* Footer bottom legal links */
+.footer-bottom-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 2px;
+    transition: var(--transition-smooth);
+}
+
+.footer-bottom-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--accent-gold);
+    transition: var(--transition-smooth);
+}
+
+.footer-bottom-link:hover {
+    color: var(--accent-gold);
+}
+
+.footer-bottom-link:hover::after {
+    width: 100%;
+}
     </style>
 </head>
 <body>
@@ -1282,10 +1346,10 @@
                 <p class="hero-desc">Navigate complex corporate law, personal litigation, and legal compliance with direct access to vetted senior attorneys and secure legal intelligence.</p>
                 
                 <div class="hero-cta-group">
-                    <a href="services.html" class="btn btn-primary">
+                    <a href="404.html" class="btn btn-primary">
                         Explore Legal Services <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="contact.html" class="btn btn-secondary">
+                    <a href="404.html" class="btn btn-secondary">
                         Book Consultation
                     </a>
                 </div>
@@ -1387,7 +1451,7 @@
                         <h3 class="service-title">Corporate Law</h3>
                         <p class="service-desc">Entity formation, M&A governance, equity structuring, regulatory compliance, and cross-border commercial transactions.</p>
                     </div>
-                    <a href="services.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="404.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
 
                 <!-- Service 2 -->
@@ -1397,7 +1461,7 @@
                         <h3 class="service-title">Civil Litigation</h3>
                         <p class="service-desc">Strategic dispute resolution, commercial court proceedings, arbitration, and breach of contract representation.</p>
                     </div>
-                    <a href="services.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="404.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
 
                 <!-- Service 3 -->
@@ -1407,7 +1471,7 @@
                         <h3 class="service-title">Intellectual Property</h3>
                         <p class="service-desc">Patent filings, trademark protection, trade secret litigation, and global copyright licensing agreements.</p>
                     </div>
-                    <a href="services.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="404.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
 
                 <!-- Service 4 -->
@@ -1417,7 +1481,7 @@
                         <h3 class="service-title">Family & Estate Law</h3>
                         <p class="service-desc">Trust creation, asset distribution, matrimonial law, prenuptial agreements, and probate management.</p>
                     </div>
-                    <a href="services.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="404.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
 
                 <!-- Service 5 -->
@@ -1427,7 +1491,7 @@
                         <h3 class="service-title">Property Law</h3>
                         <p class="service-desc">Real estate acquisitions, title due diligence, commercial leasing, zoning compliance, and land disputes.</p>
                     </div>
-                    <a href="services.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="404.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
 
                 <!-- Service 6 -->
@@ -1437,7 +1501,7 @@
                         <h3 class="service-title">Contract Review</h3>
                         <p class="service-desc">Rigorous legal auditing of employment contracts, vendor agreements, NDAs, and liability clauses.</p>
                     </div>
-                    <a href="services.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="404.html" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1545,7 +1609,7 @@
                             <span><i class="fa-solid fa-briefcase"></i> 15+ Yrs Exp</span>
                             <span class="lawyer-rating"><i class="fa-solid fa-star"></i> 4.9 (140+ cases)</span>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%; margin-top: 18px;" onclick="openLawyerModal('Eleanor Vance, Esq.', 'Senior Corporate Counsel', '15+ Years', 'Corporate Law, M&A, Venture Capital')">View Profile</button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%; margin-top: 18px;" >View Profile</a>
                     </div>
                 </div>
 
@@ -1560,7 +1624,7 @@
                             <span><i class="fa-solid fa-briefcase"></i> 12+ Yrs Exp</span>
                             <span class="lawyer-rating"><i class="fa-solid fa-star"></i> 4.8 (115+ cases)</span>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%; margin-top: 18px;" onclick="openLawyerModal('Marcus Sterling, JD', 'Lead IP & Litigation Attorney', '12+ Years', 'IP Litigation, Patent Filing, Copyright')">View Profile</button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%; margin-top: 18px;" >View Profile</a>
                     </div>
                 </div>
 
@@ -1570,12 +1634,12 @@
                     <div class="lawyer-info">
                         <h3 class="lawyer-name">Sophia Thorne, LL.M.</h3>
                         <div class="lawyer-spec">Head of Family & Property Law</div>
-                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">Expert in high-net-worth estate planning, real estate acquisition compliance, and private trusts.</p>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">Expert in high-net-worth estate planning, real estate acquisition compliance, and private trusts. And trust worthy</p>
                         <div class="lawyer-meta">
                             <span><i class="fa-solid fa-briefcase"></i> 10+ Yrs Exp</span>
                             <span class="lawyer-rating"><i class="fa-solid fa-star"></i> 4.9 (95+ cases)</span>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%; margin-top: 18px;" onclick="openLawyerModal('Sophia Thorne, LL.M.', 'Head of Family & Property Law', '10+ Years', 'Property Law, Estate Planning, Trusts')">View Profile</button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%; margin-top: 18px;" >View Profile</a>
                     </div>
                 </div>
             </div>
@@ -1601,8 +1665,8 @@
                     </div>
                     <div class="resource-content">
                         <span class="resource-tag">Corporate</span>
-                        <h3 class="resource-title">Corporate Governance & Compliance Manual 2026</h3>
-                        <a href="resources.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        <h3 class="resource-title">Corporate Governance & Compliance Manual 2026 </h3>
+                        <a href="404.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -1612,8 +1676,8 @@
                     </div>
                     <div class="resource-content">
                         <span class="resource-tag">Real Estate</span>
-                        <h3 class="resource-title">Commercial Real Estate Title Due Diligence</h3>
-                        <a href="resources.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        <h3 class="resource-title">Commercial Real Estate Title Due Diligence and it held in 2025</h3>
+                        <a href="404.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -1623,8 +1687,8 @@
                     </div>
                     <div class="resource-content">
                         <span class="resource-tag">IP Law</span>
-                        <h3 class="resource-title">Protecting Software Assets & AI Innovations</h3>
-                        <a href="resources.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        <h3 class="resource-title">Protecting Software Assets & AI Innovations it occurs in 2024</h3>
+                        <a href="404.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -1635,7 +1699,7 @@
                     <div class="resource-content">
                         <span class="resource-tag">Estate Planning</span>
                         <h3 class="resource-title">Essential Elements of Estate Trust Structuring</h3>
-                        <a href="resources.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="404.html" class="card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1741,10 +1805,10 @@
             <h2 class="cta-title">Your Legal Questions Deserve <span class="gold-text">Clear Answers.</span></h2>
             <p class="cta-desc">Connect with senior legal practitioners today to safeguard your business, assets, and future decisions.</p>
             <div class="cta-buttons">
-                <a href="signup.html" class="btn btn-primary">
+                <a href="404.html" class="btn btn-primary">
                     Get Started Now <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <a href="contact.html" class="btn btn-secondary">
+                <a href="404.html" class="btn btn-secondary">
                     Contact Legal Team
                 </a>
             </div>
@@ -1763,10 +1827,10 @@
                     <img src="./assests/logo.webp" alt="Legal Services Portal" class="footer-brand-logo">
                     <p class="footer-brand-desc">A premium legal technology portal offering direct access to vetted attorneys, secure document vaults, and institutional legal consultation.</p>
                     <div class="social-links">
-                        <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
 
@@ -1786,11 +1850,11 @@
                 <div>
                     <h4 class="footer-col-title">Legal Resources</h4>
                     <ul class="footer-links-list">
-                        <li><a href="resources.html" class="footer-link">Legal Guides</a></li>
-                        <li><a href="resources.html" class="footer-link">FAQs</a></li>
-                        <li><a href="resources.html" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="resources.html" class="footer-link">Terms & Conditions</a></li>
-                        <li><a href="resources.html" class="footer-link">Legal Updates</a></li>
+                        <li><a href="404.html" class="footer-link">Legal Guides</a></li>
+                        <li><a href="404.html" class="footer-link">FAQs</a></li>
+                        <li><a href="404.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="404.html" class="footer-link">Terms & Conditions</a></li>
+                        <li><a href="404.html" class="footer-link">Legal Updates</a></li>
                     </ul>
                 </div>
 
@@ -1803,7 +1867,7 @@
                     </div>
                     <div class="footer-contact-item">
                         <i class="fa-solid fa-envelope"></i>
-                        <span>contact@legalservicesportal.com</span>
+                        <span>stackly@legalservicesportal.com</span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fa-solid fa-location-dot"></i>
@@ -1818,8 +1882,12 @@
 
             <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <div>&copy; 2026 Legal Services Portal. All Rights Reserved.</div>
-                <div>Designed with Precision &amp; Bank-Grade Security</div>
+                <div>&copy; 2026 Stackly Legal Services Portal. All Rights Reserved.</div>
+                <div>
+                    <a href="404.html" class="footer-bottom-link">Privacy Policy</a>
+                    <span class="footer-bottom-sep">|</span>
+                    <a href="404.html" class="footer-bottom-link">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>

@@ -44,7 +44,7 @@
         .emerald-text { color: var(--accent-emerald); }
 
         .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 100px 0; }
+        .section-padding { padding: 50px 0; }
         .text-center { text-align: center; }
 
         .section-header { max-width: 750px; margin: 0 auto 60px auto; text-align: center; }
@@ -222,6 +222,71 @@
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
         }
+
+        /* Footer Contact Info — hover effect */
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+    padding: 8px 10px;
+    margin-left: -10px;
+    border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.footer-contact-item i {
+    color: var(--accent-gold);
+    margin-top: 4px;
+    transition: var(--transition-smooth);
+}
+
+.footer-contact-item:hover {
+    background: rgba(212, 175, 55, 0.06);
+    border-left: 2px solid var(--accent-gold);
+    transform: translateX(6px);
+    color: var(--accent-gold);
+}
+
+.footer-contact-item:hover i {
+    color: var(--accent-gold-light);
+    transform: scale(1.15);
+    text-shadow: 0 0 10px var(--accent-gold-glow);
+}
+
+/* Footer bottom legal links */
+.footer-bottom-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 2px;
+    transition: var(--transition-smooth);
+}
+
+.footer-bottom-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--accent-gold);
+    transition: var(--transition-smooth);
+}
+
+.footer-bottom-link:hover {
+    color: var(--accent-gold);
+}
+
+.footer-bottom-link:hover::after {
+    width: 100%;
+}
     </style>
 </head>
 <body>
@@ -308,7 +373,7 @@
                             <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Corporate Governance &amp; Compliance Manual 2026</h3>
                             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Comprehensive breakdown of statutory board responsibilities, SEC reporting timelines, and venture shareholder voting rights.</p>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Corporate Governance & Compliance Manual 2026', 'Corporate Law', 'Detailed breakdown of corporate governance rules including annual general meetings (AGMs), shareholder rights, SEC Form 10-K filing protocols, and fiduciary duties of enterprise directors.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%;">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -323,7 +388,7 @@
                             <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Commercial Real Estate Title Due Diligence</h3>
                             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Essential verification steps before signing real estate acquisition contracts or long-term commercial master leases.</p>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Commercial Real Estate Title Due Diligence', 'Property Law', 'This guide outlines step-by-step title deed inspection, encumbrance searches, zoning clearance verification, and environmental liability audits.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%;">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -338,7 +403,7 @@
                             <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Protecting Software Assets &amp; AI Innovations</h3>
                             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">How technology companies can combine trade secrets, software patents, and copyright licensing for maximum protection.</p>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Protecting Software Assets & AI Innovations', 'Corporate', 'Navigating software patent eligibility under USPTO guidelines, structuring trade secret vaults, and preventing proprietary code leaks in LLM integrations.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%;">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -353,7 +418,7 @@
                             <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Essential Elements of Estate Trust Structuring</h3>
                             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">A practical roadmap for setting up revocable living trusts, irrevocable asset protection trusts, and healthcare POAs.</p>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Essential Elements of Estate Trust Structuring', 'Family Law', 'Comprehensive guide detailing how trusts bypass probate courts, reduce estate tax liability, and secure multi-generational wealth transfer.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%;">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -368,7 +433,7 @@
                             <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Executive Severance &amp; Non-Compete Enforceability</h3>
                             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Analyzing recent FTC and state court rulings regarding non-compete clauses and executive equity acceleration.</p>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Executive Severance & Non-Compete Enforceability', 'Employment', 'Explores geographic and temporal limits of non-competes, trade secret carveouts, and negotiating change-of-control severance triggers.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%;">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -383,7 +448,7 @@
                             <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Corporate Investigation Protocol &amp; Statutory Privilege</h3>
                             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">What enterprise leaders must do immediately when served with agency subpoenas or regulatory audit notices.</p>
                         </div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openResourceReader('Corporate Investigation Protocol & Statutory Privilege', 'Criminal Law', 'Outlines Upjohn warnings, securing attorney-client privilege during internal investigations, and data retention holds.')">Read Guide <i class="fa-solid fa-arrow-right"></i></button>
+                        <a href="404.html" class="btn btn-secondary" style="width: 100%;">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -442,16 +507,19 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
+                <!-- Column 1: Brand -->
                 <div>
                     <img src="./assests/logo.webp" alt="Legal Services Portal" class="footer-brand-logo">
                     <p class="footer-brand-desc">A premium legal technology portal offering direct access to vetted attorneys, secure document vaults, and institutional legal consultation.</p>
                     <div class="social-links">
-                        <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
+
+                <!-- Column 2: Quick Links -->
                 <div>
                     <h4 class="footer-col-title">Quick Links</h4>
                     <ul class="footer-links-list">
@@ -462,27 +530,49 @@
                         <li><a href="contact.html" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
+
+                <!-- Column 3: Legal Resources -->
                 <div>
                     <h4 class="footer-col-title">Legal Resources</h4>
                     <ul class="footer-links-list">
-                        <li><a href="resources.html" class="footer-link">Legal Guides</a></li>
-                        <li><a href="resources.html" class="footer-link">FAQs</a></li>
-                        <li><a href="resources.html" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="resources.html" class="footer-link">Terms & Conditions</a></li>
-                        <li><a href="resources.html" class="footer-link">Legal Updates</a></li>
+                        <li><a href="404.html" class="footer-link">Legal Guides</a></li>
+                        <li><a href="404.html" class="footer-link">FAQs</a></li>
+                        <li><a href="404.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="404.html" class="footer-link">Terms & Conditions</a></li>
+                        <li><a href="404.html" class="footer-link">Legal Updates</a></li>
                     </ul>
                 </div>
+
+                <!-- Column 4: Contact Info -->
                 <div>
                     <h4 class="footer-col-title">Contact Info</h4>
-                    <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+1 (800) 555-LEGAL<br>+1 (212) 990-8800</span></div>
-                    <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>contact@legalservicesportal.com</span></div>
-                    <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>100 Wall Street, Suite 2400<br>New York, NY 10005</span></div>
-                    <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon - Fri: 8:00 AM - 8:00 PM EST</span></div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+1 (800) 555-LEGAL<br>+1 (212) 990-8800</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>stackly@legalservicesportal.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>100 Wall Street, Suite 2400<br>New York, NY 10005</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Mon - Fri: 8:00 AM - 8:00 PM EST</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <div>&copy; 2026 Legal Services Portal. All Rights Reserved.</div>
-                <div>Designed with Precision &amp; Bank-Grade Security</div>
+                <div>&copy; 2026 Stackly Legal Services Portal. All Rights Reserved.</div>
+                <div>
+                    <a href="404.html" class="footer-bottom-link">Privacy Policy</a>
+                    <span class="footer-bottom-sep">|</span>
+                    <a href="404.html" class="footer-bottom-link">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>

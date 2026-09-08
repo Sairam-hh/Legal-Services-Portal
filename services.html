@@ -44,7 +44,7 @@
         .emerald-text { color: var(--accent-emerald); }
 
         .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 100px 0; }
+        .section-padding { padding: 50px 0; }
         .text-center { text-align: center; }
 
         .section-header { max-width: 750px; margin: 0 auto 60px auto; text-align: center; }
@@ -165,6 +165,71 @@
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
         }
+
+        /* Footer Contact Info — hover effect */
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+    padding: 8px 10px;
+    margin-left: -10px;
+    border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.footer-contact-item i {
+    color: var(--accent-gold);
+    margin-top: 4px;
+    transition: var(--transition-smooth);
+}
+
+.footer-contact-item:hover {
+    background: rgba(212, 175, 55, 0.06);
+    border-left: 2px solid var(--accent-gold);
+    transform: translateX(6px);
+    color: var(--accent-gold);
+}
+
+.footer-contact-item:hover i {
+    color: var(--accent-gold-light);
+    transform: scale(1.15);
+    text-shadow: 0 0 10px var(--accent-gold-glow);
+}
+
+/* Footer bottom legal links */
+.footer-bottom-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 2px;
+    transition: var(--transition-smooth);
+}
+
+.footer-bottom-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--accent-gold);
+    transition: var(--transition-smooth);
+}
+
+.footer-bottom-link:hover {
+    color: var(--accent-gold);
+}
+
+.footer-bottom-link:hover::after {
+    width: 100%;
+}
     </style>
 </head>
 <body>
@@ -238,7 +303,7 @@
                             <li><i class="fa-solid fa-check"></i> M&amp;A Due Diligence Auditing</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Corporate Law & Governance', 'Our corporate attorneys provide institutional-grade counsel for venture-backed startups, private equity funds, and multinational corporations.', ['Entity Formation & Articles of Incorporation', 'Shareholder Purchase Agreements', 'Regulatory Compliance & SEC Audit', 'M&A Contract Review & Negotiating'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary" onclick="">View Details &amp; Book</a>
                 </div>
 
                 <!-- 2. Civil Litigation -->
@@ -258,7 +323,7 @@
                             <li><i class="fa-solid fa-check"></i> Shareholder Dispute Resolution</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Civil Litigation & Dispute Resolution', 'Our trial lawyers bring aggressive, data-driven litigation strategy to protect your financial and reputational interests in high-stakes disputes.', ['Commercial Court Trials', 'Pre-Litigation Settlement Strategy', 'Arbitration & Neutral Mediation', 'Injunctions & Restraining Orders'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary" >View Details &amp; Book</a>
                 </div>
 
                 <!-- 3. Criminal Law -->
@@ -278,7 +343,7 @@
                             <li><i class="fa-solid fa-check"></i> Emergency Bail &amp; Arraignment Counsel</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Criminal Defense & White Collar', 'Protecting your constitutional rights and liberty through immediate statutory defense intervention and white-collar trial experience.', ['White-Collar Fraud & Embezzlement Defense', 'Regulatory Grand Jury Investigations', 'Internal Corporate Compliance Audits', 'Appellate Court Advocacy'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
                 <!-- 4. Family Law -->
@@ -298,7 +363,7 @@
                             <li><i class="fa-solid fa-check"></i> Child Custody &amp; Guardianship</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Family & Matrimonial Law', 'Safeguarding family stability and financial assets with discretion and strategic legal negotiation.', ['Comprehensive Prenuptial Structuring', 'Contested & Uncontested Dissolution', 'Custody & Visitation Arrangements', 'Post-Decree Enforcement'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
                 <!-- 5. Property Law -->
@@ -318,7 +383,7 @@
                             <li><i class="fa-solid fa-check"></i> Zoning &amp; Land Development Permits</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Property & Real Estate Law', 'Ensuring real estate acquisitions and commercial developments are legal, unencumbered, and highly profitable.', ['Commercial Title Verification', 'Master Lease Structuring', 'Zoning & Municipal Permits', 'Boundary & Land Title Litigation'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
                 <!-- 6. Employment Law -->
@@ -336,7 +401,7 @@
                         <li><i class="fa-solid fa-check"></i> Non-Compete &amp; NDA Drafting</li>
                         <li><i class="fa-solid fa-check"></i> Workplace Policy Compliance Audits</li>
                     </ul>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Employment & Labor Law', 'Structuring enforceable employment policies and defending organizations against statutory labor claims.', ['Executive Compensation Packages', 'Enforceable Non-Compete Agreements', 'Harassment & Discrimination Defense', 'Independent Contractor Classification'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
                 <!-- 7. Intellectual Property -->
@@ -356,7 +421,7 @@
                             <li><i class="fa-solid fa-check"></i> IP Licensing &amp; Technology Transfer</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Intellectual Property', 'Turn your intangible innovations into legally protected, monetizable enterprise assets.', ['USPTO & Global Trademark Prosecution', 'Software & AI Patent Applications', 'Trade Secret Vault Security', 'Infringement Cease & Desist Action'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
                 <!-- 8. Contract Law -->
@@ -376,7 +441,7 @@
                             <li><i class="fa-solid fa-check"></i> Limitation of Liability &amp; Indemnity</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Contract Drafting & Review', 'Prevent costly litigation through crystal-clear, legally binding contracts.', ['Custom Commercial Agreement Drafting', 'Vendor & Partner Agreement Audits', 'Indemnification & Risk Allocation', 'SaaS SLA & Terms of Service'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
                 <!-- 9. Tax & Compliance -->
@@ -396,7 +461,7 @@
                             <li><i class="fa-solid fa-check"></i> Estate &amp; Wealth Transfer Planning</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Tax Law & Statutory Compliance', 'Optimizing tax liabilities while ensuring total compliance with federal and state revenue authorities.', ['Corporate Tax Minimization Strategy', 'IRS & State Audit Defense', 'Offshore Entity Tax Compliance', 'Estate Tax & Trust Structuring'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
                 <!-- 10. Legal Documentation -->
@@ -416,7 +481,7 @@
                             <li><i class="fa-solid fa-check"></i> Encrypted e-Signature Vault</li>
                         </ul>
                     </div>
-                    <button class="btn btn-secondary" onclick="openServiceModal('Digital Legal Documentation', 'Access legally binding, attorney-drafted document templates and execution workflows instantly.', ['Customized Power of Attorney Documents', 'Affidavits & Statutory Declarations', 'Digital Cloud Document Archiving', 'Legally Enforceable e-Signatures'])">View Details &amp; Book</button>
+                    <a href="404.html" class="btn btn-secondary">View Details &amp; Book</a>
                 </div>
 
             </div>
@@ -428,7 +493,7 @@
         <div class="container reveal">
             <h2 style="font-size: 2.8rem; margin-bottom: 18px;">Need Custom Legal Counsel?</h2>
             <p style="color: var(--text-secondary); max-width: 650px; margin: 0 auto 36px auto; font-size: 1.1rem;">Schedule an confidential session with a practice head today.</p>
-            <a href="contact.html" class="btn btn-primary">Schedule Consultation <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="404.html" class="btn btn-primary">Schedule Consultation <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </section>
 
@@ -442,7 +507,7 @@
             <ul id="modalServiceList" style="list-style: none; margin-bottom: 24px; color: var(--text-secondary); font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px;">
             </ul>
             <div style="display: flex; gap: 14px;">
-                <a href="contact.html" class="btn btn-primary" style="flex: 1;">Book Consultation</a>
+                <a href="404.html" class="btn btn-primary" style="flex: 1;">Book Consultation</a>
                 <button class="btn btn-secondary" onclick="closeServiceModal()">Close</button>
             </div>
         </div>
@@ -452,16 +517,19 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
+                <!-- Column 1: Brand -->
                 <div>
-                    <img src="assests/logo.webp" alt="Legal Services Portal" class="footer-brand-logo">
+                    <img src="./assests/logo.webp" alt="Legal Services Portal" class="footer-brand-logo">
                     <p class="footer-brand-desc">A premium legal technology portal offering direct access to vetted attorneys, secure document vaults, and institutional legal consultation.</p>
                     <div class="social-links">
-                        <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="404.html"  class="social-icon" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
+
+                <!-- Column 2: Quick Links -->
                 <div>
                     <h4 class="footer-col-title">Quick Links</h4>
                     <ul class="footer-links-list">
@@ -472,27 +540,49 @@
                         <li><a href="contact.html" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
+
+                <!-- Column 3: Legal Resources -->
                 <div>
                     <h4 class="footer-col-title">Legal Resources</h4>
                     <ul class="footer-links-list">
-                        <li><a href="resources.html" class="footer-link">Legal Guides</a></li>
-                        <li><a href="resources.html" class="footer-link">FAQs</a></li>
-                        <li><a href="resources.html" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="resources.html" class="footer-link">Terms & Conditions</a></li>
-                        <li><a href="resources.html" class="footer-link">Legal Updates</a></li>
+                        <li><a href="404.html" class="footer-link">Legal Guides</a></li>
+                        <li><a href="404.html" class="footer-link">FAQs</a></li>
+                        <li><a href="404.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="404.html" class="footer-link">Terms & Conditions</a></li>
+                        <li><a href="404.html" class="footer-link">Legal Updates</a></li>
                     </ul>
                 </div>
+
+                <!-- Column 4: Contact Info -->
                 <div>
                     <h4 class="footer-col-title">Contact Info</h4>
-                    <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+1 (800) 555-LEGAL<br>+1 (212) 990-8800</span></div>
-                    <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>contact@legalservicesportal.com</span></div>
-                    <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>100 Wall Street, Suite 2400<br>New York, NY 10005</span></div>
-                    <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon - Fri: 8:00 AM - 8:00 PM EST</span></div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+1 (800) 555-LEGAL<br>+1 (212) 990-8800</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>stackly@legalservicesportal.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>100 Wall Street, Suite 2400<br>New York, NY 10005</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Mon - Fri: 8:00 AM - 8:00 PM EST</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <div>&copy; 2026 Legal Services Portal. All Rights Reserved.</div>
-                <div>Designed with Precision &amp; Bank-Grade Security</div>
+                <div>&copy; 2026 Stackly Legal Services Portal. All Rights Reserved.</div>
+                <div>
+                    <a href="404.html" class="footer-bottom-link">Privacy Policy</a>
+                    <span class="footer-bottom-sep">|</span>
+                    <a href="404.html" class="footer-bottom-link">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>

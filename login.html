@@ -397,7 +397,7 @@ button{font-family:inherit;}
             <label class="checkbox-row" style="margin-bottom:0;">
               <input type="checkbox" id="rememberMe"> Remember this session
             </label>
-            <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+            <a href="404.html" class="forgot-link" id="forgotLink">Forgot password?</a>
           </div>
 
           <button type="submit" class="submit-btn">
@@ -444,7 +444,7 @@ button{font-family:inherit;}
           </div>
 
           <label class="checkbox-row">
-            <input type="checkbox" id="termsCheck"> I accept the <a href="resources.html" target="_blank">Terms &amp; Conditions</a> and Privacy Policy.
+            <input type="checkbox" id="termsCheck"> I accept the <a href="404.html" >Terms &amp; Conditions</a> and Privacy Policy.
           </label>
           <div class="field-error" id="termsError" style="margin-top:-12px;margin-bottom:16px;">You must accept the Terms &amp; Conditions to continue.</div>
 
@@ -457,14 +457,14 @@ button{font-family:inherit;}
 
       </div>
 
-      <p class="switch-line" id="switchLine">Don't have an account? <a href="#" class="switch-link" id="switchLink">Sign up</a></p>
+      <p class="switch-line" id="switchLine">Don't have an account? <a  class="switch-link" id="switchLink">Sign up</a></p>
 
       <div class="divider">Or continue with social identity</div>
       <div class="social-row">
-        <a href="https://linkedin.com" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://twitter.com" target="_blank" class="social-btn" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://facebook.com" target="_blank" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="404.html"  class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="404.html"  class="social-btn" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="404.html"  class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="404.html"  class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
       </div>
     </div>
   </div>
@@ -634,11 +634,7 @@ button{font-family:inherit;}
     });
   });
 
-  document.getElementById('forgotLink').addEventListener('click', function(e){
-    e.preventDefault();
-    alert('If an account exists for this email, a password reset link has been sent.');
-  });
-
+  
   /* ---------------- validation helpers ---------------- */
   function showError(input, errorEl, show){
     if(show){
