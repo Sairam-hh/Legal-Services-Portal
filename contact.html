@@ -144,6 +144,10 @@
         }
 
         /* Map Container */
+        .map-section-header {
+            text-align: center; margin-bottom: 28px;
+        }
+
         .map-wrapper {
             margin-top: 50px; border: var(--border-gold); background: rgba(20, 30, 25, 0.8); padding: 12px; position: relative;
         }
@@ -364,7 +368,7 @@
                         <div class="info-card">
                             <i class="fa-solid fa-envelope-open-text"></i>
                             <div class="info-card-title">Encrypted Email</div>
-                            <div class="info-card-desc">contact@legalservicesportal.com<br>legal@legalservicesportal.com</div>
+                            <div class="info-card-desc">stackly@legalservicesportal.com<br>legal@legalservicesportal.com</div>
                         </div>
 
                         <div class="info-card">
@@ -432,6 +436,10 @@
 
             <!-- Map Container (real, embedded, interactive Google Map) -->
             <div class="map-wrapper reveal">
+                <div class="map-section-header">
+                    <span class="section-subtitle">Visit Our Office</span>
+                    <h2 style="font-size: 2rem; margin: 0;">Find Us on the <span class="gold-text">Map</span></h2>
+                </div>
                 <div class="map-frame-holder" id="mapFrameHolder">
                     <iframe
                         src="https://maps.google.com/maps?q=100+Wall+Street,+New+York,+NY+10005&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -468,8 +476,10 @@
             <div class="footer-grid">
                 <!-- Column 1: Brand -->
                 <div>
-                    <img src="./assests/logo.webp" alt="Legal Services Portal" class="footer-brand-logo">
-                    <p class="footer-brand-desc">A premium legal technology portal offering direct access to vetted attorneys, secure document vaults, and institutional legal consultation.</p>
+                    <a href="index.html" class="footer-brand-link">
+                        <img src="./assests/logo.webp" alt="Legal Services Portal" class="footer-brand-logo">
+                    </a>                   
+                     <p class="footer-brand-desc">A premium legal technology portal offering direct access to vetted attorneys, secure document vaults, and institutional legal consultation.</p>
                     <div class="social-links">
                         <a href="404.html"  class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                         <a href="404.html"  class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
